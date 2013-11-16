@@ -22,25 +22,23 @@ function data_handler($root){
                                                 show_admin_data($root);
                                         }
                                         break;
-                                case 'del':
-                                        if(isset($_GET['id']) && ctype_digit($_GET['id'])){
+                              case 'del':
+                                        if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
                                                 $id = $_GET['id'];
-                                                $ok = "DELETE FROM mahasiswa WHERE nim='$id'";
-                                                $res = mysql_query($ok);
-                                                if($res){
+                                                $sql = "DELETE FROM mahasiswa WHERE nim='$id'";
+                                                $res = mysql_query($sql);
+                                                if ($res) {
                                                         
                                                         ?>
 
-                                                <?php
-                                                }else{
+<?php
+                                                } else {
                                                         echo 'Gagal menghapus data';
                                                 }
-                                        }else{
+                                        } else {
                                                 show_admin_data($root);
                                         }
-                                        break;
-                                default:
-                                        show_admin_data($root);
+										show_admin_data($root);
                                         break;
                         }
                 }else{
@@ -137,79 +135,81 @@ function data_detail($root, $id){
         }
 }
 
-function data_editor($root, $id = 0){
+function data_editor($root, $id = 0) {
         $view = true;
-        if(isset($_POST['nim']) && $_POST['nim']){
-                if(!$id){
-                        $nim         = $_POST['nim'];
-                        $nama         = $_POST['nama'];
+        if(isset($_POST['nim']) && $_POST['nim']) {
+                if (!$id) {
+                        $nim = $_POST['nim'];
+                        $nama = $_POST['nama'];
                         $alamat = $_POST['alamat'];
                         $res = mysql_query("INSERT INTO mahasiswa VALUES ('".$nim."', '" .$nama."', '" .$alamat."')");
-                        if($res){ ?>
-                        <script type="text/javascript">
-                                document.location.href="<?php echo $root;?>";
-                        </script>
-                <?php
-                }else{
+                        if($res) { ?>
+<script type="text/javascript">
+document.location.href="<?php echo $root;?>";
+</script>
+<?php
+                } else {
                         echo 'Gagal menambah data';
                 }
-                }else{
-                        $nim         = $_POST['nim'];
-                        $nama         = $_POST['nama'];
+                } else {
+                        $nim = $_POST['nim'];
+                        $nama = $_POST['nama'];
                         $alamat = $_POST['alamat'];
                         $res = mysql_query("UPDATE mahasiswa SET nim='$nim', nama='$nama', alamat='$alamat' WHERE nim='$id'");
-                        if($res){ ?>
-
-                <?php
-                }else{
+                        if ($res) { ?>
+<script type="text/javascript">
+document.location.href="<?php echo $root;?>";
+</script>
+<?php
+                } else {
                         echo 'Gagal Modifikasi';
                 }
                 }
         }
-        if($view){
-                if($id){
+        if ($view) {
+                if ($id) {
                         $sql = "SELECT nim, nama, alamat FROM mahasiswa WHERE nim ='$id'";
                         $res = mysql_query($sql);
-                        if($res){
-                                if(mysql_num_rows($res)){
+                        if ($res) {
+                                if(mysql_num_rows($res)) {
                                         $row = mysql_fetch_row($res);
                                         $nim = $row[0];
                                         $nama = $row[1];
                                         $alamat = $row[2];
-                                }else{
+                                } else {
                                         show_admin_data();
                                         return;
                                 }
                         }
-                }else{
+                } else {
                         $nim = @$_POST['nim'];
                         $nama = @$_POST['nama'];
                         $alamat = @$_POST['alamat'];
                 }
                 ?>
-                <h2> <?php echo $id ? 'Edit' : 'Tambah';?> Data </h2>
-                <form action="" method="post">
-                        <table border=1 cellpadding=4 cellspacing=0>
-                                <tr>
-                                        <td width=100>NIM*</td>
-                                        <td><input type="text" name="nim" size=10 value="<?php echo $nim;?>"/></td>
-                                </tr>
-                                <tr>
-                                        <td>Nama</td>
-                                        <td><input type="text" name="nama" size=40 value="<?php echo $nama;?>"/></td>
-                                </tr>
-                                <tr>
-                                        <td>Alamat</td>
-                                        <td><input type="text" name="alamat" size=60 value="<?php echo $alamat;?>"/></td>
-                                </tr>
-                                <tr>
-                                        <td> </td>
-                                        <td> <input type="submit" value="Submit"/> <input type="button" value="cancel" onclick="history.go(-1)"/></td>
-                                </tr>
-                        </table>
-                </form> <br/>
-                <p> Ket: * Harus diisi</p>
-                <?php
+<h2> <?php echo $id ? 'Edit' : 'Tambah';?> Data </h2>
+<form action="" method="post">
+<table border=1 cellpadding=4 cellspacing=0>
+<tr>
+<td width=100>NIM*</td>
+<td><input type="text" name="nim" size=10 value="<?php echo $nim;?>"/></td>
+</tr>
+<tr>
+<td>Nama</td>
+<td><input type="text" name="nama" size=40 value="<?php echo $nama;?>"/></td>
+</tr>
+<tr>
+<td>Alamat</td>
+<td><input type="text" name="alamat" size=60 value="<?php echo $alamat;?>"/></td>
+</tr>
+<tr>
+<td> </td>
+<td> <input type="submit" value="Submit"/> <input type="button" value="cancel" onclick="history.go(-1)"/></td>
+</tr>
+</table>
+</form> <br/>
+<p> Ket: * Harus diisi</p>
+<?php
         }
         return false;
         }
