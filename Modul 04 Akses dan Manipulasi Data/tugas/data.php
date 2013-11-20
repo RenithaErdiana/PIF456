@@ -1,43 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
+
 <head>
-<title>Akses dan Manipulasi Data</title>
-<script language="JavaScript">
-                function konfirmasi(Keterangan){
-                        tanya = confirm('Anda yakin ingin menghapus mahasiswa dengan NIM '+ Keterangan + ' ?');
-                        if (tanya == true) return true;
-                        else return false;
-                }
-        </script>
+ <script language="JavaScript">
+    function konfirm(id) // konfirmasi untuk hapus data
+    {
+        tanya = confirm('Apakah anda yakin ingin menghapus data dengan NIM '+ id + '?');
+        if (tanya == true)
+            return true;
+        else
+            return false;
+    }
+ </script>
 
 </head>
-<body background="mn.jpg">
+<title> Akses dan Manipulasi Data </title>
 <style type="text/css">
-  .even {
-    background: #ddd;
-  }
-  </style>
-</head>
- 
-<body>
-	<h3 align="right"><a href="index.php">BACK HOME</a></p>
-	
-        <?php
-                ini_set('display_errors',1);
+.even {
+        background: #ddd;
+}
+</style> </head>
 
-                // Meng-include file koneksi dan data handler
-                require_once './koneksi.php';
-                require_once './data_handler.php';
-                // Konstanta nama tabel
-                define('MHS', 'mahasiswa');
-                // Memanggil fungsi data handler
-                data_handler('?m=data');
-        ?>
+<body>
+
+		<?php
+		ini_set('display_errors',1);
+
+				require_once 'koneksi.php';
+				require_once 'data_handler.php';
+
+		define('MHS','mahasiswa');
+
+		data_handler('?m=data');
+		?>
+
 
 </body>
+
+
 </html>
-
-
-
-
