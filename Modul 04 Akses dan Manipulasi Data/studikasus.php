@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Akses dan Manipulasi Data</title>
-<script language="JavaScript">
+        <title>Modul 4 | Studi Kasus</title>
+
+        <script language="JavaScript">
                 function konfirmasi(Keterangan){
                         tanya = confirm('Anda yakin ingin menghapus mahasiswa dengan NIM '+ Keterangan + ' ?');
                         if (tanya == true) return true;
@@ -26,16 +26,15 @@
                 ini_set('display_errors',1);
 
                 // Meng-include file koneksi dan data handler
-                require_once './koneksi.php';
-                require_once './data_studikasus.php';
+                require_once 'koneksi.php';
+                require_once 'data_studikasus.php';
+
                 // Konstanta nama tabel
                 define('MHS', 'mahasiswa');
+
                 // Memanggil fungsi data handler
                 data_handler('?m=data');
         ?>
+
 </body>
 </html>
-
-
-
-
