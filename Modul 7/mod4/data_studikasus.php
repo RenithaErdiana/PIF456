@@ -1,3 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>Data Mahasiswa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../dist/css/bootstrap.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+		<nav class="navbar navbar-default" role="navigation">
+ 			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar navbar-inverse">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+			      	<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+    			</button>
+    		<a class="navbar-brand" href="#">Pemrograman Web</a>
+  			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    			<ul class="nav navbar-nav">
+      				<li class="active"><a href="../index.php">Home</a></li>
+      				<li><a href="#">About</a></li>
+      				<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Modul 4 <b class="caret"></b></a>
+        				<ul class="dropdown-menu">
+          					<li><a href="mod4/studikasus.php">Studi Kasus</a></li>
+          					<li><a href="tugas/login.php">Tugas Praktikum</a></li>
+        				</ul>
+      				</li>
+      				<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">MODUL 5 <b class="caret"></b></a>
+        				<ul class="dropdown-menu">
+          					<li><a href="../mod5/studikasus.php">Studi Kasus</a></li>
+          					<li><a href="../mod5/tugaspraktikum.php">Tugas Praktikum</a></li>
+        				</ul>
+      				</li>
+                    <li><a href="../modul 6/index.php">MODUL 6</a></li>
+    			</ul>
+    			<ul class="nav navbar-nav navbar-right">
+      				<li class="dropdown">
+                    	<a href="#" class ="dropdown-toggle" data-toggle="dropdown">
+                        	<span class="glyphicon glyphicon-cloud-download"></span> 
+                            Download
+                            <b class="caret"></b>	
+                        </a>
+                    	<ul class="dropdown-menu">
+							<li><a href="download.php">Via Server 1</a></li>
+                            <li><a href="download2.php">Via Server 2</a></li>
+    					</ul>
+                   	</li>
+                    <li class="dropdown">
+        				<a href = "#"  class ="dropdown-toggle" data-toggle="dropdown">
+    						<span class="glyphicon glyphicon-user"></span>
+			    			renithaerdiana
+    						<b class="caret"></b>					
+                        </a>
+    					<ul class="dropdown-menu">
+							<li><a href="#">Profille</a></li>
+    					</ul>
+      				</li>
+    			</ul>
+  			</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+		<script src="http://code.jquery.com/jquery.js"></script>
+        <script src="../dist/js/bootstrap.min.js"></script>
+        <script src="../dist/js/jquery.js"></script>
+        <script src="../dist/js/bootstrap-transition.js"></script>
+        <script src="../dist/js/bootstrap-dropdown.js"></script>
+        <script src="../dist/js/bootstrap-collapse.js"></script>
+        <script src="../dist/js/application.js"></script>
+        <script src="../dist/js/bootstrap-button.js"></script>
+	</body>
+</html>
 <?php
 function data_handler($root) {
         if (isset($_GET['act']) && $_GET['act'] == 'add') {
@@ -68,10 +144,18 @@ function show_admin_data($root) { ?>
                         <div style="padding:5px;">
                         
                         </div>
+                        <div class="container">
+                        <div class="row-fluid"><br>
                         <h3> Daftar Mahasiswa</h3>
-                        <a href="<?php echo $root; ?>&amp;act=add">Tambah Data</a><br><br>
-                        <table>
-                        <tr>
+                        <form class="navbar-form navbar-right" action="cari.php" role="search" method="post">
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search" name="nama">
+                              </div>
+                              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Submit</button>
+                            </form>
+                        <a href="<?php echo $root; ?>&amp;act=add"><button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-plus-sign"></span>  Tambah Data</button></a><br><br>
+                        <table class="table table-hover">
+                        <tr class="success">
                         <th>#</th>
                         <th width=120>NIM</th>
                         <th width=200>Nama</th>
@@ -91,8 +175,8 @@ function show_admin_data($root) { ?>
                                         <td><?php echo $row[1];?></td>
                                         <td><?php echo $row[2];?></td>
                                         <td align="left">
-                        <a href ="<?php echo $root;?>&amp;act=edit&amp;id=<?php echo $id;?>"> Edit</a>
-                        <a href ="<?php echo $root;?>&amp;act=del&amp;id=<?php echo $id;?>" onclick="return konfirm('<? echo $id;?> ')">Hapus</a>
+                        <a href ="<?php echo $root;?>&amp;act=edit&amp;id=<?php echo $id;?>"><button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-pencil"></span> Edit</button></a>
+                        <a href ="<?php echo $root;?>&amp;act=del&amp;id=<?php echo $id;?>" onclick="return konfirm('<? echo $id;?> ')"><button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span>Hapus</button></a>
                         </td>
                         </tr>
                         <?php
@@ -100,6 +184,8 @@ function show_admin_data($root) { ?>
                         }
                         ?>
                         </table>
+                        </div>
+                        </div>
                         </div>
                         <?php
         } else {
@@ -114,7 +200,9 @@ function data_detail($root, $id) {
         $res = mysql_query($sql);
         if($res) {
                 if (mysql_num_rows($res)) { ?>
-                    <table>
+                    <div class="row-fluid">
+                    <div class="container">
+                    <table class="table table-hover">
                     <?php
                     $row = mysql_fetch_row($res); ?>
                     <tr>
@@ -130,6 +218,8 @@ function data_detail($root, $id) {
                     <td><?php echo $row[2];?></td>
                     </tr>
                     </table>
+                    </div>
+                    </div>
                     <?php
                 } else {
                         echo 'Data Tidak Ditemukan';
@@ -190,10 +280,12 @@ function data_editor($root, $id = 0) {
                         $alamat = @$_POST['alamat'];
                 }
                 ?>
-            
+            <div class="row-fluid">
+                <div class="container">
+                <div class="hero-unit">
             <h2> <?php echo $id ? 'Edit' : 'Tambah';?> Data </h2>
             <form action="" method="post">
-            <table>
+            <table class="table table-hove">
             <tr>
             <td width=100>NIM*</td>
             <td><input type="text" name="nim" size=20 value="<?php echo $nim;?>"/></td>
@@ -208,7 +300,7 @@ function data_editor($root, $id = 0) {
             </tr>
             <tr>
             
-            <td> <input type="submit" value="Submit"/> <input type="button" value="cancel" onclick="history.go(-1)"/></td>
+            <td> <button type= "Submit" class="btn btn-info" type="button">Submit</button> <button class="btn btn-info" type="button" onClick="history.go(-1)">Cancel</button></td>
             </tr>
             </table>
             </form> <br/>
